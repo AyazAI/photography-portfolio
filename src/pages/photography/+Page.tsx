@@ -9,7 +9,7 @@ import {
   WorkTextFilter,
   WorkTitel,
   WorkTitelContainer,
-} from '../work/Work.styled';
+} from './Photography.styled';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import QuoteBlock from '../../components/Quote/QuoteBlock';
