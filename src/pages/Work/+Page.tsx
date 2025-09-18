@@ -1,6 +1,9 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../../supabaseClient';
+import { CUSTOM_SPLITTER } from '../../components/CollectionComponent/CollectionComponent.styled';
+import QuoteBlock from '../../components/Quote/QuoteBlock';
 import WorkItemComponent from '../../components/WorkItemComponent/WorkItemComponent';
+import { supabase } from '../../supabaseClient';
 import {
   WorkContainer,
   WorkFilterWrapp,
@@ -9,10 +12,6 @@ import {
   WorkTitel,
   WorkTitelContainer,
 } from './Work.styled';
-import { CUSTOM_SPLITTER } from '../../components/CollectionComponent/CollectionComponent.styled';
-import { Link } from 'react-router-dom';
-import QuoteBlock from '../../components/Quote/QuoteBlock';
-import { AnimatePresence, motion } from 'framer-motion';
 
 export type WorkItemData = {
   id: string;
@@ -31,7 +30,7 @@ export type Quote = {
   source: string;
 };
 
-const Work: React.FC = () => {
+const Page: React.FC = () => {
   const [works, setWorks] = useState<WorkItemData[]>([]);
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
@@ -98,31 +97,30 @@ const Work: React.FC = () => {
 
       <WorkPhotoWrapp>
         <AnimatePresence mode="wait">
-    {filteredWorks.map(work => (
-      <motion.div
-        key={work.id}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <Link
-          to={`/work/${work.id}?filter=${filter}`}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <WorkItemComponent work={work} source="work" />
-        </Link>
-      </motion.div>
-    ))}
-  </AnimatePresence>
+          {filteredWorks.map(work => (
+            <motion.div
+              key={work.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              style={{ width: '100%', height: '100%' }}
+            >
+              <a
+                href={`/work/${work.id}?filter=${filter}`}
+                style={{ width: '100%', height: '100%' }}
+              >
+                <WorkItemComponent work={work} source="work" />
+              </a>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </WorkPhotoWrapp>
       <CUSTOM_SPLITTER />
 
       {currentQuote && <QuoteBlock quote={currentQuote} />}
-
     </WorkContainer>
   );
 };
 
-export default Work;
+export default Page;

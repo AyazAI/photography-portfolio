@@ -1,10 +1,10 @@
 // src/components/CollectionsSwiper/CollectionsSwiper.tsx
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Left from "../../assets/icons/icon_left.svg";
-import Right from "../../assets/icons/icon_right.svg";
+import { navigate } from 'vike/client/router';
+import Left from '../../assets/icons/icon_left.svg';
+import Right from '../../assets/icons/icon_right.svg';
 import { CollectionAdditionalWrapper } from '../../components/CollectionComponent/CollectionComponent.styled';
 
 const NavigationWrapper = styled.div`
@@ -32,7 +32,8 @@ const ArrowButton = styled.button<{ side: 'left' | 'right' }>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: ${({ side }) => (side === 'left' ? 'flex-start' : 'flex-end')};
+  justify-content: ${({ side }) =>
+    side === 'left' ? 'flex-start' : 'flex-end'};
   transition: all 0.3s;
 
   &:hover {
@@ -42,7 +43,7 @@ const ArrowButton = styled.button<{ side: 'left' | 'right' }>`
 `;
 
 export const ArrowImage = styled.img`
-  width: 16px;  
+  width: 16px;
   height: auto;
 `;
 
@@ -75,7 +76,6 @@ const CollectionSlider: React.FC<CollectionSliderProps> = ({
   collectionIds,
   collectionName,
 }) => {
-  const navigate = useNavigate();
   const currentIndex = collectionIds.findIndex(id => id === currentId);
 
   const navigateTo = (newIndex: number) => {

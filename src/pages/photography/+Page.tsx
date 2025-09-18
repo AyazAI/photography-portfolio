@@ -30,7 +30,7 @@ export type Quote = {
   source: string;
 };
 
-const Photo: React.FC = () => {
+const Page: React.FC = () => {
   const [works, setWorks] = useState<WorkItemData[]>([]);
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
@@ -120,4 +120,4 @@ const Photo: React.FC = () => {
   );
 };
 
-export default Photo;
+export default Page;

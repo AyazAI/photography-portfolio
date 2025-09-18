@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   HOME_BUTTON_MAIN,
   HOME_BUTTON_RESIZABLE_BAR,
@@ -15,19 +14,25 @@ const Home: React.FC = () => {
 
   const HOME_BUTTON: React.FC<HomeButtonProps> = ({ to, label }) => {
     const [isClicked, setIsClicked] = useState(false);
-    const navigate = useNavigate();
 
-    const handleClick = () => {
-      if (isClicked) return;
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (isClicked) {
+        e.preventDefault();
+        return;
+      }
       setIsClicked(true);
-      setTimeout(() => navigate(to), 200);
+      setTimeout(() => {
+        window.location.href = to;
+      }, 200);
     };
 
     return (
-      <HOME_BUTTON_MAIN onClick={handleClick} $isClicked={isClicked}>
-        <HOME_BUTTON_RESIZABLE_BAR $isClicked={isClicked} />
-        <HOME_BUTTON_TEXT $isClicked={isClicked}>{label}</HOME_BUTTON_TEXT>
-      </HOME_BUTTON_MAIN>
+      <a href={to} onClick={handleClick} style={{ textDecoration: 'none' }}>
+        <HOME_BUTTON_MAIN $isClicked={isClicked}>
+          <HOME_BUTTON_RESIZABLE_BAR $isClicked={isClicked} />
+          <HOME_BUTTON_TEXT $isClicked={isClicked}>{label}</HOME_BUTTON_TEXT>
+        </HOME_BUTTON_MAIN>
+      </a>
     );
   };
 
@@ -41,5 +46,4 @@ const Home: React.FC = () => {
     </HomeContainer>
   );
 };
-
 export default Home;

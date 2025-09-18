@@ -1,32 +1,27 @@
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
-
 export const LayoutWrap = styled.div`
- min-width: 320px;
+  min-width: 320px;
   max-width: 1440px;
   padding-top: 20px;
   margin: 0 auto;
-
 `;
 
 export const HeaderContainer = styled.header`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 
-display: flex;
-flex-wrap: wrap;
-gap: 20px;
-align-items: center;
-justify-content: center;
-margin-bottom: 30px;
-
-
-@media screen and (min-width: 768px) {
-  width: 81%;
-  margin: 0 auto;
-  justify-content: space-between;
-  gap: 30px;
-  margin-bottom: 0;
-}
+  @media screen and (min-width: 768px) {
+    width: 81%;
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 0;
+  }
 `;
 
 export const LogoSvg = styled.img`
@@ -40,7 +35,7 @@ export const NavList = styled.ul`
   align-items: center;
 `;
 
-export const NavLinkLogo = styled(Link)`
+export const NavLinkLogo = styled.a`
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
@@ -50,11 +45,11 @@ export const NavLinkLogo = styled(Link)`
 
   &:hover {
     scale: 1.1;
-   color:  ${({ theme }) => theme.primaryYellow}
+    color: ${({ theme }) => theme.primaryYellow};
   }
 `;
 
 export const Line = styled.div`
-// border-bottom : 1px solid #8080804f;
-// padding-bottom: 24px;
+  // border-bottom : 1px solid #8080804f;
+  // padding-bottom: 24px;
 `;

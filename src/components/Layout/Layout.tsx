@@ -1,18 +1,19 @@
 import { Suspense } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import Header from '../Header/Header';
+import { usePageContext } from 'vike-react/usePageContext';
 import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
-export const Layout: React.FC = () => {
-  const location = useLocation();
+export const Layout: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const pageContext = usePageContext();
 
   return (
     <>
       <Header />
-      <Suspense>
-        <Outlet />
-      </Suspense>
-      {(location.pathname !== '/' && location.pathname !== '/home') && <Footer />}
+      <Suspense>{children}</Suspense>
+      {pageContext.urlPathname !== '/' &&
+        pageContext.urlPathname !== '/home' && <Footer />}
     </>
   );
 };

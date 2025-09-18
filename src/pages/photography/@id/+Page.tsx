@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useParams } from 'react-router-dom';
-import { supabase } from '../../supabaseClient';
+import { usePageContext } from 'vike-react/usePageContext';
+import { supabase } from '../../../supabaseClient';
 
-import Loading from '../../assets/video/logo_animated_hq.webm';
-import CollectionComponent from '../../components/CollectionComponent/CollectionComponent';
-import CollectionSlider from '../../components/CollectionsSwiper/CollectionsSwiper';
-import { NotFoundText, NotFoundWraperr } from '../work/+Page.styled';
+import Loading from '../../../assets/video/logo_animated_hq.webm';
+import CollectionComponent from '../../../components/CollectionComponent/CollectionComponent';
+import CollectionSlider from '../../../components/CollectionsSwiper/CollectionsSwiper';
+import { NotFoundText, NotFoundWraperr } from '../../work/Work.styled';
 
 interface WorkRecord {
   id: number;
@@ -14,16 +14,13 @@ interface WorkRecord {
   folder: string;
 }
 
-interface CollectionPageProps {
-  source: 'work' | 'photo';
-}
+const Page: React.FC = () => {
+  const pageContext = usePageContext();
+  const { id } = pageContext.routeParams;
+  const source = 'photo';
 
-const CollectionPage: React.FC<CollectionPageProps> = ({ source }) => {
-  const { id } = useParams<{ id: string }>();
-
-  const blocksTable =
-    source === 'work' ? 'project_blocks' : 'collection_blocks';
-  const parentTable = source === 'work' ? 'work' : 'photography';
+  const blocksTable = 'collection_blocks';
+  const parentTable = 'photography';
 
   const [project, setProject] = useState<
     (WorkRecord & { blocks: any[] }) | null
@@ -171,4 +168,4 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ source }) => {
   );
 };
 
-export default CollectionPage;
+export default Page;

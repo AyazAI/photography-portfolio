@@ -1,4 +1,10 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { usePageContext } from 'vike-react/usePageContext';
+import LogoIcon from '../../assets/icons/logo-portfolio.svg';
+import BurgerMenu from '../MobileMenu/MobileMenu';
 import {
   HeaderWrapper,
   Logo,
@@ -7,11 +13,6 @@ import {
   NavList,
   StyledNavLink,
 } from './Header.styled';
-import { useMediaQuery } from 'react-responsive';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import LogoIcon from '../../assets/icons/logo-portfolio.svg';
-import BurgerMenu from '../MobileMenu/MobileMenu';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,39 +29,76 @@ const Header: React.FC = () => {
   }, []);
 
   const isMobile = useMediaQuery({ query: '(max-width: 773px)' });
+  const pageContext = usePageContext();
 
   return (
     <NavbarContainer $isScrolled={isScrolled}>
-    <HeaderWrapper>
-      <Logo to="/home">
-        <img src={LogoIcon} alt="Logo" />
-      </Logo>
-      <NavList>
-        {isMobile ? (
-          <BurgerMenu />
-        ) : (
-          <>
-            {/* <NavItem>
-              <StyledNavLink to="/home">WELCOME</StyledNavLink>
+      <HeaderWrapper>
+        <Logo href="/">
+          <img src={LogoIcon} alt="Logo" />
+        </Logo>
+        <NavList>
+          {isMobile ? (
+            <BurgerMenu />
+          ) : (
+            <>
+              {/* <NavItem>
+              <StyledNavLink href="/home" className={pageContext.urlPathname === '/home' ? 'active' : ''}>WELCOME</StyledNavLink>
             </NavItem> */}
-            <NavItem>
-              <StyledNavLink to="/work">WORK</StyledNavLink>
-            </NavItem>{' '}
-            <NavItem>
-              <StyledNavLink to="/photography">PHOTOGRAPHY</StyledNavLink>
-            </NavItem>{' '}
-            <NavItem>
-              <StyledNavLink to="/info">INFO</StyledNavLink>
-            </NavItem>{' '}
-            <NavItem>
-              <StyledNavLink to="/contact">CONTACTS</StyledNavLink>
-            </NavItem>{' '}
-            <NavItem>
-              <StyledNavLink to="/about">ABOUT ME</StyledNavLink>
-            </NavItem>
-          </>
-        )}
-      </NavList></HeaderWrapper>
+              <NavItem>
+                <StyledNavLink
+                  href="/work"
+                  className={
+                    pageContext.urlPathname === '/work' ? 'active' : ''
+                  }
+                >
+                  WORK
+                </StyledNavLink>
+              </NavItem>{' '}
+              <NavItem>
+                <StyledNavLink
+                  href="/photography"
+                  className={
+                    pageContext.urlPathname === '/photography' ? 'active' : ''
+                  }
+                >
+                  PHOTOGRAPHY
+                </StyledNavLink>
+              </NavItem>{' '}
+              <NavItem>
+                <StyledNavLink
+                  href="/info"
+                  className={
+                    pageContext.urlPathname === '/info' ? 'active' : ''
+                  }
+                >
+                  INFO
+                </StyledNavLink>
+              </NavItem>{' '}
+              <NavItem>
+                <StyledNavLink
+                  href="/contact"
+                  className={
+                    pageContext.urlPathname === '/contact' ? 'active' : ''
+                  }
+                >
+                  CONTACTS
+                </StyledNavLink>
+              </NavItem>{' '}
+              <NavItem>
+                <StyledNavLink
+                  href="/about"
+                  className={
+                    pageContext.urlPathname === '/about' ? 'active' : ''
+                  }
+                >
+                  ABOUT ME
+                </StyledNavLink>
+              </NavItem>
+            </>
+          )}
+        </NavList>
+      </HeaderWrapper>
     </NavbarContainer>
   );
 };
