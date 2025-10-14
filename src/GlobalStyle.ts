@@ -1,0 +1,182 @@
+import { css } from '@emotion/react';
+import 'modern-normalize';
+export const GlobalStyle = css`
+  :root {
+    --font-family: 'Geist', sans-serif;
+    --second-family: 'JetBrains Mono', sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --v1: calc(max(9vw, 11vh));
+    scrollbar-width: none;
+    word-wrap: break-word;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+    outline: none;
+  }
+
+  body {
+    font-family: var(--font-family);
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+    transition-duration: 300ms;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'Geist', sans-serif;
+    line-height: 161.8%;
+
+    @media (min-width: 744px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 1440px) {
+      font-size: 24px;
+    }
+  }
+
+  h2 {
+    font-weight: 400;
+    font-family: 'Geist', sans-serif;
+    font-style: normal;
+    line-height: 161.8%;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Geist', sans-serif;
+    font-style: normal;
+    line-height: 161.8%;
+
+    @media (min-width: 1440px) {
+      font-size: 16px;
+    }
+  }
+
+  h4 {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 161.8%;
+    letter-spacing: -0.02em;
+    color: #808080;
+
+    @media (min-width: 1440px) {
+      font-size: 16px;
+    }
+  }
+
+  code {
+    font-family: var(--second-family);
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: all 0.13s ease-in-out;
+    &:hover {
+      color: rgb(0, 122, 255);
+      transition: all 0.13s ease-in-out;
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: var(--second-family);
+    background: linear-gradient(
+      90deg,
+      #e4e4e4 0%,
+      #203a43 33.33%,
+      #2c5364 66.66%,
+      #e4e4e4 100%
+    );
+    background-size: 305% 100%;
+    background-position: right bottom;
+    transition: all 0.5s ease-in-out;
+  }
+  video {
+    object-fit: contain;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+  }
+
+  ul,
+  li {
+    list-style: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    height: -webkit-fill-available;
+    font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 16px;
+    font-family: inherit;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  @keyframes buttonAnimationOut {
+    0% {
+      background-position: center bottom;
+    }
+    99.99% {
+      background-position: left bottom;
+    }
+    100% {
+      background-position: right bottom;
+    }
+  }
+
+  @keyframes move {
+    from {
+      transform: translateY(0%);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+`;
