@@ -28,5 +28,4 @@ dist-ssr
 .netlify
 .env
 
-instructions/
 .vite-ssg-temp/

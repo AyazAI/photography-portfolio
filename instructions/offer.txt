@@ -1,0 +1,102 @@
+We are seeking a skilled freelancer to address crawlability and accessibility issues on our React/Vite site, pavlotroph.com. The project involves adding static fallbacks for 5 routes, correcting meta viewport, and ensuring PowerMapper/Lighthouse pass. Additionally, tasks include adding unique titles/descriptions, valid font preloads, HTML/XML sitemap, robots.txt, and a minor CSS validation fix.
+[ Milestone 1 — Baseline fixes + sitemaps (PR #1) — $80 ]
+| Tasks:
+
+Done • Update <head> in SPA index.html:
+
+Viewport → <meta name="viewport" content="width=device-width, initial-scale=1">
+Fix font preloads (forward slashes, as="font" type="font/woff2" crossorigin; remove any that 404).
+
+No occurance found• CSS validator: change all transition-delay: 0 → transition-delay: 0s;
+Done • Add to public/: sitemap.xml, robots.txt (with Sitemap: https://pavlotroph.com/sitemap.xml), sitemap.html (simple link list).
+
+
+| Acceptance:
+
+• After deploy, sitemap.xml, robots.txt, sitemap.html resolve.
+• PowerMapper (home) no longer flags: “Do not use meta viewport to disable zoom” or “Invalid value for CSS property”.
+• PR #1 opened with a short README of what changed.
+
+[ Milestone 2 — Static prerender for 5 routes + on-page SEO (PR #2) — $140 ]
+
+| Tasks:
+
+• Static prerender (not SSR) the following routes:
+
+/about, /work, /photography, /info, /contact
+(OK to use a Vite prerender plugin or a minimal crawler at build time. No framework migration.)
+
+• Ensure each prerendered page includes:
+
+One visible <h1>
+Unique <title> + <meta name="description"> (~150 chars)
+Header <nav> links: Home / Work / Photography / About / Info / Contact
+Simple site search form (Google site search)
+
+• Keep SPA hydration intact (JS users see the full app as usual).
+
+| Titles & descriptions to use (you can share these):
+
+• /about — About
+“About Pavlo Troph — Toronto-based designer creating graphic design, 3D, video, and photography for games and brands.”
+
+
+
+• /work — Work / Projects
+“Selected projects by Pavlo Troph : branding, UI, motion, 3D, and marketing visuals for FiveMods, Network Graphics, and more.”
+
+
+
+• /photography — Photography
+“Photography portfolio by Pavlo Troph — automotive, cinematic frames, and environment studies.”
+
+
+
+• /info — Info / CV
+“Info & CV — tools, skills, and experience of Pavlo Troph . Available for collaborations and studio roles.”
+
+
+
+• /contact — Contact
+“Contact Pavlo Troph — inquiries, collaborations, and freelance/studio opportunities.”
+
+
+
+| Acceptance
+
+• PowerMapper on those 5 routes shows no:
+“This page is blank”
+“No h1 element”
+“No meta description”
+“No navigation / Provide a search option”
+
+• View Source (or curl) of each route shows meaningful HTML (not just empty #root).
+• Lighthouse (desktop, unauthenticated) on /work/ shows SEO ≥ 90 and Accessibility ≥ 90.
+• PR #2 opened with build instructions (how prerender runs) and before/after screenshots.
+
+[ Milestone 3 — Final QA & handoff — $30 ]
+
+
+
+| Tasks
+
+• Re-run PowerMapper site-wide; fix any remaining items in this scope.
+• Provide a README: how to edit titles/descriptions, add new routes to prerender + sitemap, and maintain the nav/search.
+
+| Acceptance
+• PowerMapper “Summary” no longer lists the specific errors above.
+• README present and clear.
+• Approve PR(s) for merge.
+
+[ Repo & workflow (send this too) }
+
+• Work in a branch seo-static-prerender.
+• PR-only workflow (no direct pushes to main).
+• Each milestone = separate PR where possible.
+
+// Static prerender notes
+
+• Use a Vite prerender plugin or a tiny build-time crawler that hits the 5 routes and writes HTML to dist. No SSR/migration.
+• Ensure the prerendered pages include the header nav and meta tags.
+• If any font preload path doesn’t exist, remove or correct it (no 404s in Network panel).
+• Keep sitemap.xml and robots.txt in public/ so they’re served statically.
